@@ -1,3 +1,33 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-split-pane contentId="content">
+    <ion-menu contentId="content" type="overlay">
+      
+      <ion-content>
+        <ion-list id="inbox-list">
+          <ion-list-header>Menu</ion-list-header>
+          <ion-note>Manually side bar</ion-note>
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of pages; let i = index">
+
+            <ion-item [routerLink]="[p.url]" routerDirection="root">
+              <ion-label>{{ p.title }}</ion-label>
+            </ion-item>
+
+          </ion-menu-toggle>
+        </ion-list>
+      </ion-content>
+
+      <ion-footer>
+        <ion-toolbar>
+          <ion-row>
+            <ion-col>{{ username }}</ion-col>
+            <ion-col>
+              <ion-button fill="clear" (click)="signOut()">Logout</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-toolbar>
+      </ion-footer>
+
+    </ion-menu>
+    <ion-router-outlet id="content" main></ion-router-outlet>
+  </ion-split-pane>
 </ion-app>
